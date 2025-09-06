@@ -11,20 +11,20 @@ export function EmergencyServicesCard() {
       </CardHeader>
       <CardContent className="space-y-4">
         <Button className="w-full justify-start" size="lg" asChild>
-          <a href="tel:911">
+          <a href="tel:112">
             <Phone className="mr-2 h-5 w-5"/>
-            Call 911
+            Call 112
           </a>
         </Button>
         <div className="flex gap-4">
           <Button variant="outline" className="w-full justify-start" asChild>
-            <a href="tel:911">
+            <a href="tel:102">
               <Ambulance className="mr-2 h-5 w-5"/>
               Ambulance
             </a>
           </Button>
           <Button variant="outline" className="w-full justify-start" asChild>
-            <a href="tel:911">
+            <a href="tel:112">
               <ShieldAlert className="mr-2 h-5 w-5"/>
               Police
             </a>
