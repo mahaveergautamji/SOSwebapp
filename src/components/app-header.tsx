@@ -7,7 +7,7 @@ export function AppHeader() {
       <div className="container flex h-14 max-w-7xl items-center">
         <div className="mr-4 flex items-center">
           <Shield className="h-6 w-6 mr-2 text-primary" />
-          <h1 className="font-bold text-lg">Guardian Angel</h1>
+          <h1 className="font-bold text-lg">SOS Web App</h1>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-2">
            <Avatar>
