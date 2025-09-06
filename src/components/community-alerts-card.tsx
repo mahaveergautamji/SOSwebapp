@@ -3,9 +3,9 @@ import { MapPin } from 'lucide-react';
 import Image from 'next/image';
 
 const alerts = [
-    { id: 1, location: "Oak Street Park", issue: "Suspicious activity reported", time: "5m ago" },
-    { id: 2, location: "Main & 3rd Ave", issue: "Large, aggressive crowd", time: "12m ago" },
-    { id: 3, location: "City Library", issue: "Report of theft", time: "30m ago" },
+    { id: 1, location: "Swaroop Nagar", issue: "Suspicious activity reported", time: "5m ago" },
+    { id: 2, location: "Govind Nagar", issue: "Large, aggressive crowd", time: "12m ago" },
+    { id: 3, location: "Kakadeo", issue: "Report of theft", time: "30m ago" },
 ];
 
 export function CommunityAlertsCard() {
