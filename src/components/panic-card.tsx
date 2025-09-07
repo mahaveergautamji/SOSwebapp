@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Siren, ShieldCheck, MapPin, Users, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, AlertDialogFooter } from "@/components/ui/alert-dialog";
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import Image from 'next/image';
 
@@ -26,9 +26,26 @@ export function PanicCard() {
                 Help is on the way. Your location and status have been shared.
               </CardDescription>
             </div>
-            <Button variant="ghost" size="icon" onClick={() => setIsEmergency(false)} aria-label="Cancel SOS">
-              <X className="h-5 w-5 text-destructive/80" />
-            </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive" size="sm">
+                  <X className="h-4 w-4 mr-2" />
+                  Cancel SOS
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will cancel the SOS alert. Your emergency contacts will be notified that you are safe.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Stay Alert</AlertDialogCancel>
+                  <AlertDialogAction onClick={() => setIsEmergency(false)}>I'm Safe</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
