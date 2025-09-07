@@ -3,6 +3,7 @@ import { PanicCard } from '@/components/panic-card';
 import { ThreatDetectorCard } from '@/components/threat-detector-card';
 import { CommunityAlertsCard } from '@/components/community-alerts-card';
 import { EmergencyServicesCard } from '@/components/emergency-services-card';
+import { AppFooter } from '@/components/app-footer';
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <AppFooter />
     </div>
   );
 }
