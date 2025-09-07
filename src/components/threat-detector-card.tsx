@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
-import { Mic, AlertTriangle, ShieldCheck, Loader2 } from 'lucide-react';
+import { Mic, AlertTriangle, ShieldCheck, Loader2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useToast } from "@/hooks/use-toast";
@@ -19,17 +19,41 @@ export function ThreatDetectorCard() {
   const audioChunksRef = useRef<Blob[]>([]);
   const { toast } = useToast();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const recordingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
 
   useEffect(() => {
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
+      if (recordingTimeoutRef.current) {
+        clearTimeout(recordingTimeoutRef.current);
+      }
     };
   }, []);
 
+  const stopRecordingAndReset = () => {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
+      mediaRecorderRef.current.stop(); // This will trigger the onstop event
+    }
+    // Clean up stream tracks
+    mediaRecorderRef.current?.stream.getTracks().forEach(track => track.stop());
+
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+     if (recordingTimeoutRef.current) {
+      clearTimeout(recordingTimeoutRef.current);
+      recordingTimeoutRef.current = null;
+    }
+    reset();
+  };
+
   const startRecording = async () => {
     if (status === 'recording') return;
+    reset();
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -43,12 +67,16 @@ export function ThreatDetectorCard() {
       };
 
       mediaRecorderRef.current.onstop = () => {
+        // if the stop was manually triggered, we might not want to analyze.
+        if (status !== 'recording') return; 
+
         if (audioChunksRef.current.length === 0) {
            setError("Could not record audio. Please check microphone permissions.");
            setStatus('error');
            return;
         }
 
+        setStatus('analyzing');
         const audioBlob = new Blob(audioChunksRef.current, { type: mediaRecorderRef.current.mimeType });
         const reader = new FileReader();
         reader.readAsDataURL(audioBlob);
@@ -84,10 +112,9 @@ export function ThreatDetectorCard() {
         });
       }, recordingDuration / 100);
 
-      setTimeout(() => {
+      recordingTimeoutRef.current = setTimeout(() => {
         if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
             mediaRecorderRef.current.stop();
-            setStatus('analyzing');
         }
       }, recordingDuration);
 
@@ -107,6 +134,14 @@ export function ThreatDetectorCard() {
     setResult(null);
     setError(null);
     setProgress(0);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    if (recordingTimeoutRef.current) {
+        clearTimeout(recordingTimeoutRef.current);
+        recordingTimeoutRef.current = null;
+    }
   };
   
   const renderContent = () => {
@@ -119,6 +154,10 @@ export function ThreatDetectorCard() {
               <Mic className="h-6 w-6 text-destructive animate-pulse" />
               <Progress value={progress} className="w-full" />
             </div>
+            <Button onClick={stopRecordingAndReset} variant="outline" size="sm">
+              <X className="mr-2 h-4 w-4" />
+              Stop Scan
+            </Button>
           </div>
         );
       case 'analyzing':
