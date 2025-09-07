@@ -83,28 +83,17 @@ export function PanicCard() {
         <CardDescription className="mt-2 text-base">Press the button below in case of an emergency.</CardDescription>
       </CardHeader>
       <CardContent className="p-0">
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button variant="destructive" size="lg" className="h-24 w-24 md:h-32 md:w-32 rounded-full shadow-lg shadow-destructive/50 transform transition hover:scale-105 active:scale-95">
-              <div className="flex flex-col items-center">
-                <Siren className="h-8 w-8 md:h-10 md:w-10" />
-                <span className="mt-1 text-lg font-bold">SOS</span>
-              </div>
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Activate SOS?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This will immediately alert your emergency contacts and share your live location. Are you sure you want to proceed?
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction className="bg-destructive hover:bg-destructive/90" onClick={() => setIsEmergency(true)}>Activate</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <Button 
+          variant="destructive" 
+          size="lg" 
+          className="h-24 w-24 md:h-32 md:w-32 rounded-full shadow-lg shadow-destructive/50 transform transition hover:scale-105 active:scale-95"
+          onClick={() => setIsEmergency(true)}
+        >
+          <div className="flex flex-col items-center">
+            <Siren className="h-8 w-8 md:h-10 md:w-10" />
+            <span className="mt-1 text-lg font-bold">SOS</span>
+          </div>
+        </Button>
       </CardContent>
     </Card>
   );
