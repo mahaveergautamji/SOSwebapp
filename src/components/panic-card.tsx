@@ -18,7 +18,7 @@ export function PanicCard() {
           <div className="flex justify-between items-start">
             <div>
               <CardTitle className="text-destructive flex items-center gap-2">
-                <Siren />
+                <Siren className="animate-ping" />
                 SOS Activated
               </CardTitle>
               <CardDescription className="text-destructive/80 mt-1">
@@ -81,30 +81,17 @@ export function PanicCard() {
         <CardDescription className="mt-2 text-base">Press the button below in case of an emergency.</CardDescription>
       </CardHeader>
       <CardContent className="p-0">
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button 
-              variant="destructive" 
-              size="lg" 
-              className="h-24 w-24 md:h-32 md:w-32 rounded-full shadow-lg shadow-destructive/50 transform transition hover:scale-105 active:scale-95"
-            >
-              <div className="flex flex-col items-center">
-                <Siren className="h-8 w-8 md:h-10 md:w-10" />
-                <span className="mt-1 text-lg font-bold">SOS</span>
-              </div>
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Activate SOS?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This will immediately share your location and a distress signal with your emergency contacts. Are you sure?
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={() => setIsEmergency(true)}>Activate</AlertDialogAction>
-          </AlertDialogContent>
-        </AlertDialog>
+        <Button 
+          variant="destructive" 
+          size="lg" 
+          className="h-24 w-24 md:h-32 md:w-32 rounded-full shadow-lg shadow-destructive/50 transform transition hover:scale-105 active:scale-95"
+          onClick={() => setIsEmergency(true)}
+        >
+          <div className="flex flex-col items-center">
+            <Siren className="h-8 w-8 md:h-10 md:w-10" />
+            <span className="mt-1 text-lg font-bold">SOS</span>
+          </div>
+        </Button>
       </CardContent>
     </Card>
   );
