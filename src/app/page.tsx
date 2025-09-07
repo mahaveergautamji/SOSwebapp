@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import { AppHeader } from '@/components/app-header';
 import { PanicCard } from '@/components/panic-card';
 import { ThreatDetectorCard } from '@/components/threat-detector-card';
@@ -5,8 +8,19 @@ import { CommunityAlertsCard } from '@/components/community-alerts-card';
 import { EmergencyServicesCard } from '@/components/emergency-services-card';
 import { FamilyEmergencyCard } from '@/components/family-emergency-card';
 import { AppFooter } from '@/components/app-footer';
+import { WelcomeDialog } from '@/components/welcome-dialog';
 
 export default function Home() {
+  const [showWelcome, setShowWelcome] = useState(false);
+
+  useEffect(() => {
+    const hasSeenWelcome = localStorage.getItem('hasSeenWelcomeDialog');
+    if (!hasSeenWelcome) {
+      setShowWelcome(true);
+      localStorage.setItem('hasSeenWelcomeDialog', 'true');
+    }
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen">
       <AppHeader />
@@ -24,6 +38,7 @@ export default function Home() {
         </div>
       </main>
       <AppFooter />
+      <WelcomeDialog open={showWelcome} onOpenChange={setShowWelcome} />
     </div>
   );
 }
