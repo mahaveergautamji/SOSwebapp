@@ -15,8 +15,8 @@ You'll need to have [Node.js](https://nodejs.org/en/) (which includes npm) insta
 1.  **Clone the repository:**
     If you have git installed, you can clone the repository. Otherwise, you can download the source code.
     ```bash
-    git clone <repository-url>
-    cd <repository-folder>
+    git clone https://github.com/mahaveergautamji/SOSwebapp.git
+    cd SOSwebapp
     ```
 
 2.  **Install dependencies:**
