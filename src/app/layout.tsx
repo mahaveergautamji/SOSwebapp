@@ -1,7 +1,8 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
-import { AppLayout } from '@/components/app-layout';
+import { AppHeader } from '@/components/app-header';
+import { AppFooter } from '@/components/app-footer';
 
 export const metadata: Metadata = {
   title: 'SOS Web App',
@@ -20,10 +21,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased">
-        <AppLayout>
+      <body className="font-body antialiased flex flex-col min-h-screen">
+        <AppHeader />
+        <main className="flex-1 container max-w-7xl p-4 sm:p-6 md:p-8">
           {children}
-        </AppLayout>
+        </main>
+        <AppFooter />
         <Toaster />
       </body>
     </html>
