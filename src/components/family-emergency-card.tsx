@@ -22,19 +22,19 @@ export function FamilyEmergencyCard() {
         <CardDescription>Quickly notify your family.</CardDescription>
       </CardHeader>
       <CardContent className="grid grid-cols-2 gap-4">
-        <Button variant="destructive" className="flex flex-col h-20" onClick={() => sendMessage("I need help, please contact me immediately.")}>
+        <Button variant="destructive" className="flex flex-col h-20 transition-transform hover:scale-105" onClick={() => sendMessage("I need help, please contact me immediately.")}>
             <AlertTriangle className="h-6 w-6 mb-1" />
             <span>I need help</span>
         </Button>
-        <Button variant="secondary" className="flex flex-col h-20" onClick={() => sendMessage("I'm on my way.")}>
+        <Button variant="secondary" className="flex flex-col h-20 transition-transform hover:scale-105" onClick={() => sendMessage("I'm on my way.")}>
             <Waypoints className="h-6 w-6 mb-1" />
             <span>I'm on my way</span>
         </Button>
-        <Button variant="outline" className="flex flex-col h-20 border-green-500 text-green-500 hover:bg-green-500/10 hover:text-green-600" onClick={() => sendMessage("I'm safe.")}>
+        <Button variant="outline" className="flex flex-col h-20 border-green-500 text-green-500 hover:bg-green-500/10 hover:text-green-600 transition-transform hover:scale-105" onClick={() => sendMessage("I'm safe.")}>
             <ShieldCheck className="h-6 w-6 mb-1" />
             <span>I'm safe</span>
         </Button>
-        <Button variant="default" className="flex flex-col h-20" onClick={() => sendMessage("Call me now.")}>
+        <Button variant="default" className="flex flex-col h-20 transition-transform hover:scale-105" onClick={() => sendMessage("Call me now.")}>
             <PhoneOutgoing className="h-6 w-6 mb-1" />
             <span>Call me now</span>
         </Button>

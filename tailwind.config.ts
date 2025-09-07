@@ -91,11 +91,18 @@ export default {
         'pulse-slow': {
           '50%': { opacity: '0.7' },
         },
+        ping: {
+          '75%, 100%': {
+            transform: 'scale(2)',
+            opacity: '0',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'pulse-slow': 'pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
       },
     },
   },

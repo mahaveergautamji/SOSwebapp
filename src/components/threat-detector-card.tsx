@@ -114,7 +114,7 @@ export function ThreatDetectorCard() {
       case 'recording':
         return (
           <div className="text-center space-y-4 w-full">
-            <p className="text-muted-foreground">Recording for 5 seconds...</p>
+            <p className="text-muted-foreground animate-pulse">Recording for 5 seconds...</p>
             <div className="flex items-center gap-4">
               <Mic className="h-6 w-6 text-destructive animate-pulse" />
               <Progress value={progress} className="w-full" />
