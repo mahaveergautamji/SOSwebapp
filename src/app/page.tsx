@@ -3,6 +3,7 @@ import { PanicCard } from '@/components/panic-card';
 import { ThreatDetectorCard } from '@/components/threat-detector-card';
 import { CommunityAlertsCard } from '@/components/community-alerts-card';
 import { EmergencyServicesCard } from '@/components/emergency-services-card';
+import { FamilyEmergencyCard } from '@/components/family-emergency-card';
 import { AppFooter } from '@/components/app-footer';
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
             <ThreatDetectorCard />
           </div>
           <div className="flex flex-col gap-6 md:gap-8">
+            <FamilyEmergencyCard />
             <CommunityAlertsCard />
             <EmergencyServicesCard />
           </div>
