@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Siren, ShieldCheck, MapPin, Users, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, AlertDialogFooter } from "@/components/ui/alert-dialog";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import Image from 'next/image';
 
@@ -13,7 +13,7 @@ export function PanicCard() {
 
   if (isEmergency) {
     return (
-      <Card className="bg-destructive/10 border-destructive animate-pulse-slow">
+      <Card className="bg-destructive/10 border-destructive">
         <CardHeader>
           <div className="flex justify-between items-start">
             <div>
@@ -39,10 +39,8 @@ export function PanicCard() {
                     This will cancel the SOS alert. Your emergency contacts will be notified that you are safe.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Stay Alert</AlertDialogCancel>
-                  <AlertDialogAction onClick={() => setIsEmergency(false)}>I'm Safe</AlertDialogAction>
-                </AlertDialogFooter>
+                <AlertDialogCancel>Stay Alert</AlertDialogCancel>
+                <AlertDialogAction onClick={() => setIsEmergency(false)}>I'm Safe</AlertDialogAction>
               </AlertDialogContent>
             </AlertDialog>
           </div>
@@ -58,7 +56,7 @@ export function PanicCard() {
           <div>
             <h3 className="font-semibold mb-2 flex items-center gap-2"><Users className="h-5 w-5" /> Notifying Emergency Contacts</h3>
             <div className="flex items-center space-x-4">
-              {['Mom', 'David', 'Sarah'].map(name => (
+              {['Mom', 'Rohan', 'Priya'].map(name => (
                  <div key={name} className="flex flex-col items-center gap-1">
                     <Avatar>
                         <AvatarImage src={`https://picsum.photos/seed/${name}/100`} />
@@ -83,17 +81,30 @@ export function PanicCard() {
         <CardDescription className="mt-2 text-base">Press the button below in case of an emergency.</CardDescription>
       </CardHeader>
       <CardContent className="p-0">
-        <Button 
-          variant="destructive" 
-          size="lg" 
-          className="h-24 w-24 md:h-32 md:w-32 rounded-full shadow-lg shadow-destructive/50 transform transition hover:scale-105 active:scale-95"
-          onClick={() => setIsEmergency(true)}
-        >
-          <div className="flex flex-col items-center">
-            <Siren className="h-8 w-8 md:h-10 md:w-10" />
-            <span className="mt-1 text-lg font-bold">SOS</span>
-          </div>
-        </Button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button 
+              variant="destructive" 
+              size="lg" 
+              className="h-24 w-24 md:h-32 md:w-32 rounded-full shadow-lg shadow-destructive/50 transform transition hover:scale-105 active:scale-95"
+            >
+              <div className="flex flex-col items-center">
+                <Siren className="h-8 w-8 md:h-10 md:w-10" />
+                <span className="mt-1 text-lg font-bold">SOS</span>
+              </div>
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Activate SOS?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This will immediately share your location and a distress signal with your emergency contacts. Are you sure?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={() => setIsEmergency(true)}>Activate</AlertDialogAction>
+          </AlertDialogContent>
+        </AlertDialog>
       </CardContent>
     </Card>
   );
