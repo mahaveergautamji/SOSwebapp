@@ -18,8 +18,7 @@ export function PanicCard() {
           <div className="flex justify-between items-start">
             <div>
               <CardTitle className="text-destructive flex items-center gap-2">
-                <Siren className="animate-ping absolute inline-flex h-full w-full" />
-                <Siren className="relative" />
+                <Siren />
                 SOS Activated
               </CardTitle>
               <CardDescription className="text-destructive/80 mt-1">
